@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Only Good Vibes Fitness | Personal Training — Yakima, WA</title>
+<style>
+:root{
+  --primary:#7C3AED;--primary-dark:#5B21B6;--primary-light:#A855F7;--primary-xlight:#EDE9FE;
+  --accent:#F59E0B;--accent-dark:#D97706;
+  --text:#0f0a1e;--text-mid:#374151;--text-muted:#6b7280;
+  --bg:#ffffff;--bg-soft:#faf9ff;--bg-mid:#f3f0ff;
+  --border:rgba(124,58,237,0.1);
+  --shadow-sm:0 2px 12px rgba(124,58,237,0.08);
+  --shadow-md:0 6px 28px rgba(124,58,237,0.14);
+  --shadow-lg:0 16px 56px rgba(124,58,237,0.2);
+  --radius:14px;--radius-sm:8px;--t:0.2s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(1.25rem,5vw,3.5rem);height:70px;display:flex;align-items:center;justify-content:space-between;transition:background .3s ease,box-shadow .3s ease}
+#nav.scrolled{background:rgba(10,5,30,0.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 2px 28px rgba(0,0,0,0.35)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-icon{width:38px;height:38px;background:var(--primary);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.nav-logo-text{color:#fff;font-size:.95rem;font-weight:800;line-height:1.2;letter-spacing:-.3px}
+.nav-logo-text small{display:block;font-size:.58rem;font-weight:400;color:rgba(255,255,255,.42);letter-spacing:.8px;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:clamp(.75rem,2.5vw,2rem)}
+.nav-link{color:rgba(255,255,255,.76);font-size:.875rem;font-weight:500;transition:color var(--t)}
+.nav-link:hover{color:#fff}
+.nav-cta{background:var(--primary);color:#fff;padding:.5rem 1.25rem;border-radius:40px;font-size:.84rem;font-weight:700;transition:all var(--t);white-space:nowrap}
+.nav-cta:hover{background:var(--primary-dark);transform:translateY(-1px)}
+@media(max-width:768px){.nav-link{display:none}#nav{padding:0 1.25rem}}
+
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;padding:100px clamp(1.5rem,6vw,5rem) clamp(5rem,10vw,8rem)}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1711623350002-d97138f35bf2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4OTc5MDV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM3MzYwMTZ8&ixlib=rb-4.1.0&q=85') center/cover no-repeat;z-index:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,5,30,.9) 0%,rgba(60,20,110,.7) 55%,rgba(20,5,50,.6) 100%);z-index:1}
+.hero-wave{position:absolute;bottom:-1px;left:0;right:0;z-index:3;line-height:0}
+.hero-wave svg{display:block;width:100%;height:clamp(50px,7vw,90px)}
+.shape{position:absolute;z-index:2;animation:float 7s ease-in-out infinite;pointer-events:none}
+.shape-1{width:240px;height:240px;border-radius:50%;border:1.5px solid rgba(168,85,247,.18);top:14%;right:15%;animation-delay:0s}
+.shape-2{width:120px;height:120px;border-radius:50%;border:1.5px solid rgba(245,158,11,.2);top:60%;right:8%;animation-delay:-2.5s}
+.shape-3{width:70px;height:70px;border-radius:50%;background:rgba(168,85,247,.07);top:35%;right:33%;animation-delay:-4.5s}
+.shape-4{width:16px;height:16px;border-radius:50%;background:var(--accent);top:25%;right:28%;animation-delay:-1s;opacity:.6}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-22px) rotate(5deg)}}
+.hero-content{position:relative;z-index:2;max-width:750px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,.15);border:1px solid rgba(168,85,247,.35);color:#C4B5FD;font-size:.74rem;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;padding:.38rem 1rem;border-radius:40px;margin-bottom:1.6rem}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:#A855F7;border-radius:50%;flex-shrink:0}
+h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1.05;letter-spacing:-2px;color:#fff;margin-bottom:1.3rem}
+h1 span{background:linear-gradient(90deg,#A855F7,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(1rem,1.8vw,1.2rem);color:rgba(255,255,255,.72);max-width:570px;line-height:1.75;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.btn-primary{background:var(--primary);color:#fff;padding:.9rem 2rem;border-radius:var(--radius-sm);font-size:1rem;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:all var(--t);box-shadow:0 4px 20px rgba(124,58,237,.45)}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,58,237,.55)}
+.btn-ghost{color:rgba(255,255,255,.86);padding:.9rem 2rem;border-radius:var(--radius-sm);font-size:1rem;font-weight:600;border:1.5px solid rgba(255,255,255,.22);display:inline-flex;align-items:center;gap:8px;transition:all var(--t)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff;background:rgba(255,255,255,.07)}
+
+.proof-bar{background:#f3f0ff;border-bottom:1px solid var(--border);padding:1.1rem clamp(1.5rem,6vw,5rem)}
+.proof-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:clamp(1.25rem,4vw,3.5rem);flex-wrap:wrap}
+.proof-item{display:flex;align-items:center;gap:.55rem;font-size:.87rem;font-weight:600;color:var(--text-mid)}
+.proof-stars{color:var(--accent);font-size:1rem;letter-spacing:1px}
+.proof-divider{width:1px;height:20px;background:var(--border)}
+@media(max-width:560px){.proof-divider{display:none}}
+
+section{padding:clamp(4rem,7vw,6.5rem) clamp(1.5rem,6vw,5rem)}
+.section-inner{max-width:1100px;margin:0 auto}
+.label{font-size:.74rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:.6rem}
+h2{font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:800;letter-spacing:-.8px;line-height:1.15;color:var(--text);margin-bottom:.9rem}
+.intro{font-size:1.05rem;color:var(--text-muted);line-height:1.75;max-width:560px}
+
+#services{background:var(--bg-soft)}
+.services-head{text-align:center;margin-bottom:3rem}
+.services-head .intro{margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.services-grid{grid-template-columns:1fr}}
+.s-card{background:var(--bg);border-radius:var(--radius);padding:2rem;border:1px solid var(--border);border-top:3px solid transparent;transition:all var(--t);cursor:default}
+.s-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-top-color:var(--primary)}
+.s-icon{font-size:2.6rem;margin-bottom:1.1rem;line-height:1}
+.s-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem;color:var(--text)}
+.s-card p{font-size:.91rem;color:var(--text-muted);line-height:1.65}
+.s-card-dark{background:linear-gradient(135deg,var(--primary-dark),var(--primary));border-color:transparent}
+.s-card-dark h3{color:#fff}
+.s-card-dark p{color:rgba(255,255,255,.72)}
+.s-cta-link{display:inline-block;margin-top:1rem;color:#C4B5FD;font-weight:700;font-size:.88rem;transition:color var(--t)}
+.s-cta-link:hover{color:#fff}
+
+#about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.about-img-wrap{position:relative}
+.about-img{width:100%;height:430px;object-fit:cover;border-radius:var(--radius);display:block;box-shadow:var(--shadow-lg)}
+.about-img-accent{position:absolute;top:-12px;right:-12px;bottom:12px;left:12px;border:2.5px solid var(--primary);border-radius:var(--radius);z-index:-1;opacity:.3}
+.about-right{display:flex;flex-direction:column;gap:2rem}
+.stats-block{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.stat-box{background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.6rem 1.25rem;text-align:center;transition:all var(--t)}
+.stat-box:hover{box-shadow:var(--shadow-md)}
+.stat-num{font-size:clamp(2rem,3.5vw,2.8rem);font-weight:900;color:var(--primary);line-height:1;letter-spacing:-1px}
+.stat-num sup{font-size:.42em;vertical-align:top;margin-top:.22em}
+.stat-label{font-size:.78rem;color:var(--text-muted);font-weight:500;margin-top:.3rem}
+.trust-list{display:flex;flex-direction:column;gap:1rem}
+.trust-item{display:flex;align-items:flex-start;gap:12px}
+.trust-check{width:22px;height:22px;min-width:22px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;font-weight:800;margin-top:2px}
+.trust-item p{font-size:.94rem;color:var(--text-mid);line-height:1.6}
+.trust-item p strong{color:var(--text)}
+
+#testimonials{background:var(--bg-soft)}
+.testi-head{margin-bottom:3rem}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:900px){.testi-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.testi-grid{grid-template-columns:1fr}}
+.t-card{background:var(--bg);border-radius:var(--radius);padding:2rem;border:1px solid var(--border);position:relative;transition:all var(--t)}
+.t-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.t-quote{font-size:5rem;line-height:.8;color:var(--primary);opacity:.12;font-family:Georgia,serif;position:absolute;top:1rem;left:1.5rem;pointer-events:none;user-select:none}
+.t-stars{color:var(--accent);font-size:.9rem;letter-spacing:1px;margin-bottom:.85rem}
+.t-card blockquote{font-size:.93rem;color:var(--text-mid);line-height:1.75;font-style:italic;margin-top:.5rem;margin-bottom:1.4rem}
+.t-author{display:flex;align-items:center;gap:12px;border-top:1px solid var(--border);padding-top:1rem}
+.t-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.88rem;color:#fff;flex-shrink:0}
+.t-name{font-size:.87rem;font-weight:700;color:var(--text)}
+.t-role{font-size:.77rem;color:var(--text-muted)}
+
+.cta-banner{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 55%,var(--primary-light) 100%);padding:clamp(3.5rem,6vw,5.5rem) clamp(1.5rem,6vw,5rem);text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;top:-60%;left:-10%;width:120%;height:220%;background:radial-gradient(ellipse at 65% 50%,rgba(245,158,11,.1) 0%,transparent 65%);pointer-events:none}
+.cta-banner h2{color:#fff;margin-bottom:.75rem;position:relative}
+.cta-banner p{color:rgba(255,255,255,.65);font-size:1.05rem;max-width:520px;margin:0 auto 2rem;position:relative}
+
+#contact{background:var(--bg-mid)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+.c-phone{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:900;color:var(--primary);letter-spacing:-1px;margin-bottom:.35rem}
+.c-phone a{color:inherit;transition:color var(--t)}
+.c-phone a:hover{color:var(--primary-dark)}
+.c-phone-sub{font-size:.82rem;color:var(--text-muted);margin-bottom:1.75rem}
+.c-phone-sub a{color:var(--primary);font-weight:600}
+.hours{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem 1.5rem;margin-top:1.5rem}
+.hours h4{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:.75rem}
+.hours-row{display:flex;justify-content:space-between;font-size:.86rem;padding:.3rem 0;border-bottom:1px solid var(--border)}
+.hours-row:last-child{border-bottom:none}
+.hours-row span{font-weight:600;color:var(--text)}
+.hours-row em{color:var(--text-muted);font-style:normal}
+.contact-form{background:var(--bg);border-radius:var(--radius);padding:clamp(1.75rem,3vw,2.5rem);box-shadow:var(--shadow-md);border:1px solid var(--border)}
+.contact-form h3{font-size:1.3rem;font-weight:700;margin-bottom:1.5rem;color:var(--text)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:.9rem}
+.fg label{font-size:.77rem;font-weight:600;color:var(--text-muted);letter-spacing:.3px}
+.fg input,.fg textarea,.fg select{padding:.7rem 1rem;border:1.5px solid rgba(124,58,237,.1);border-radius:var(--radius-sm);font-size:.94rem;font-family:inherit;color:var(--text);background:var(--bg);transition:border-color var(--t);outline:none;resize:vertical}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(124,58,237,.08)}
+.fg textarea{min-height:100px}
+.form-submit{width:100%;padding:.9rem;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background var(--t);margin-top:.25rem}
+.form-submit:hover{background:var(--primary-dark)}
+
+footer{background:#08040f;padding:clamp(2rem,4vw,3rem) clamp(1.5rem,6vw,5rem)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{display:flex;align-items:center;gap:9px}
+.footer-logo-icon{width:32px;height:32px;background:var(--primary);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.footer-logo-text{color:rgba(255,255,255,.78);font-size:.88rem;font-weight:700}
+.footer-logo-text small{display:block;color:rgba(255,255,255,.3);font-size:.6rem;letter-spacing:.5px}
+.footer-nav{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-nav a{color:rgba(255,255,255,.38);font-size:.8rem;transition:color var(--t)}
+.footer-nav a:hover{color:var(--primary-light)}
+.footer-copy{color:rgba(255,255,255,.22);font-size:.74rem;text-align:right}
+@media(max-width:600px){.footer-inner{flex-direction:column;align-items:flex-start}.footer-copy{text-align:left}}
+
+.fade{opacity:0;transform:translateY(26px);transition:opacity .55s ease,transform .55s ease}
+.fade.in{opacity:1;transform:translateY(0)}
+.fade:nth-child(1){transition-delay:.04s}.fade:nth-child(2){transition-delay:.1s}
+.fade:nth-child(3){transition-delay:.16s}.fade:nth-child(4){transition-delay:.22s}
+.fade:nth-child(5){transition-delay:.28s}.fade:nth-child(6){transition-delay:.34s}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">⚡</div>
+    <div class="nav-logo-text">Only Good Vibes Fitness<small>Personal Training · Yakima, WA</small></div>
+  </a>
+  <div class="nav-right">
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#testimonials" class="nav-link">Reviews</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="#contact" class="nav-cta">Start Today</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  <div class="shape shape-4"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Yakima's Feel-Good Fitness Community</div>
+    <h1>Stop Starting Over.<br><span>Start Getting Results</span><br>That Actually Last.</h1>
+    <p class="hero-sub">Most fitness programs leave you burned out and back to square one. At Only Good Vibes Fitness, we build training plans around your life — not the other way around.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Claim Your Free Session ›</a>
+      <a href="#services" class="btn-ghost">See Our Programs</a>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,50 C400,90 1040,10 1440,55 L1440,80 L0,80 Z" fill="#f3f0ff"/>
+    </svg>
+  </div>
+</section>
+
+<div class="proof-bar">
+  <div class="proof-inner">
+    <div class="proof-item"><span class="proof-stars">★★★★★</span>&nbsp;200+ Five-Star Google Reviews</div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">🏆 Yakima's #1 Personal Trainer</div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">💪 Real Results, Real People</div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">✅ No Contracts. No Judgment.</div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="section-inner">
+    <div class="services-head">
+      <p class="label">What We Offer</p>
+      <h2>Training Built Around You,<br>Not Around a Cookie-Cutter Plan.</h2>
+      <p class="intro">Whether you're just starting out or pushing to a new peak, every program is personalized, progressive, and backed by a coach who actually shows up for you.</p>
+    </div>
+    <div class="services-grid">
+      <div class="s-card fade">
+        <div class="s-icon">🎯</div>
+        <h3>Personal Training</h3>
+        <p>One-on-one sessions tailored to your body, your goals, and your schedule. We track every rep and adjust every week so you keep moving forward.</p>
+      </div>
+      <div class="s-card fade">
+        <div class="s-icon">🔥</div>
+        <h3>Small Group Training</h3>
+        <p>All the energy of a group class with the attention of a personal trainer. Train alongside a tight-knit crew and hold each other accountable.</p>
+      </div>
+      <div class="s-card fade">
+        <div class="s-icon">💥</div>
+        <h3>Bootcamp Classes</h3>
+        <p>High-intensity, full-body workouts designed to push your limits and torch calories — led by coaches who know exactly how hard to push you.</p>
+      </div>
+      <div class="s-card fade">
+        <div class="s-icon">🧭</div>
+        <h3>Accountability Coaching</h3>
+        <p>Consistency is the hardest part. We check in weekly, adjust your plan, and keep you locked in when life gets in the way — because it always does.</p>
+      </div>
+      <div class="s-card fade">
+        <div class="s-icon">🌟</div>
+        <h3>Youth Workout Classes</h3>
+        <p>Safe, fun, and age-appropriate training that builds confidence, coordination, and healthy habits in kids and teens before bad ones take root.</p>
+      </div>
+      <div class="s-card s-card-dark fade">
+        <div class="s-icon">🚀</div>
+        <h3>Not sure where to start?</h3>
+        <p>Book a free intro session — 30 minutes with a coach to talk goals, assess where you're at, and build a plan with zero pressure to commit.</p>
+        <a href="#contact" class="s-cta-link">Book your free intro →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap fade">
+        <img class="about-img" src="https://images.unsplash.com/photo-1762025870765-ba3fa702e6c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTc5MDV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM3MzYwMTd8&ixlib=rb-4.1.0&q=80&w=1080" alt="Only Good Vibes Fitness team in Yakima" loading="lazy">
+        <div class="about-img-accent"></div>
+      </div>
+      <div class="about-right">
+        <div>
+          <p class="label fade">Why We're Different</p>
+          <h2 class="fade">Fitness Shouldn't Feel<br>Like Punishment.</h2>
+          <p class="intro fade">We built Only Good Vibes Fitness because Yakima deserves a gym that feels like home — where coaches know your name, celebrate your wins, and help you get back up when you fall off track.</p>
+        </div>
+        <div class="stats-block">
+          <div class="stat-box fade"><div class="stat-num" data-target="500">0<sup>+</sup></div><div class="stat-label">Members Transformed</div></div>
+          <div class="stat-box fade"><div class="stat-num" data-target="8">0<sup>+</sup></div><div class="stat-label">Years in Yakima</div></div>
+          <div class="stat-box fade"><div class="stat-num" data-target="12">0<sup>+</sup></div><div class="stat-label">Programs Available</div></div>
+          <div class="stat-box fade"><div class="stat-num" data-target="94">0<sup>%</sup></div><div class="stat-label">Member Retention Rate</div></div>
+        </div>
+        <div class="trust-list">
+          <div class="trust-item fade"><div class="trust-check">✓</div><p><strong>No judgment, ever.</strong> We welcome every body, every fitness level, and every starting point — seriously, all of them.</p></div>
+          <div class="trust-item fade"><div class="trust-check">✓</div><p><strong>Certified, experienced coaches.</strong> Every trainer is certified and trained to design programs that are both effective and safe for your body.</p></div>
+          <div class="trust-item fade"><div class="trust-check">✓</div><p><strong>Flexible scheduling.</strong> Early mornings, evenings, weekends — we work around your life so you actually show up.</p></div>
+          <div class="trust-item fade"><div class="trust-check">✓</div><p><strong>Real community.</strong> Our members cheer each other on. The vibe is contagious — come see for yourself.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="testi-head">
+      <p class="label fade">Member Stories</p>
+      <h2 class="fade">Real Yakima People.<br>Real Transformations.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="t-card fade">
+        <div class="t-quote">"</div>
+        <div class="t-stars">★★★★★</div>
+        <blockquote>I'd tried four different gyms in Yakima before this. At every one I felt invisible. At Only Good Vibes, my coach knew my name on day one and still texts me when I miss a session. Down 34 pounds and I actually look forward to working out now.</blockquote>
+        <div class="t-author">
+          <div class="t-avatar" style="background:var(--primary)">SM</div>
+          <div><div class="t-name">Sarah Mendoza</div><div class="t-role">Member since 2022 · West Valley, WA</div></div>
+        </div>
+      </div>
+      <div class="t-card fade">
+        <div class="t-quote">"</div>
+        <div class="t-stars">★★★★★</div>
+        <blockquote>I signed my 14-year-old up for the youth classes and the change in his confidence has been unreal. He went from dreading PE to asking to go to the gym on weekends. The coaches genuinely care about these kids.</blockquote>
+        <div class="t-author">
+          <div class="t-avatar" style="background:var(--accent);color:#fff">DP</div>
+          <div><div class="t-name">Derek Paulson</div><div class="t-role">Parent · Selah, WA</div></div>
+        </div>
+      </div>
+      <div class="t-card fade">
+        <div class="t-quote">"</div>
+        <div class="t-stars">★★★★★</div>
+        <blockquote>Bootcamp classes here are no joke, but the coaches scale everything so you never feel like you're drowning. I lost 18 lbs in 10 weeks and gained a group of friends I didn't expect. Best decision I made this year.</blockquote>
+        <div class="t-author">
+          <div class="t-avatar" style="background:#5B21B6">JT</div>
+          <div><div class="t-name">Jessica Torres</div><div class="t-role">Bootcamp Member · Yakima, WA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <p class="label" style="color:#C4B5FD">Service Area</p>
+  <h2>Proudly Serving Yakima<br>and Surrounding Areas</h2>
+  <p>Yakima · Selah · Union Gap · Wapato · Tieton · Naches · West Valley</p>
+  <a href="#contact" class="btn-primary" style="position:relative;background:#fff;color:var(--primary)">Claim Your Free Session</a>
+</div>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <p class="label fade">Get Started</p>
+        <h2 class="fade">Your First Session<br>Is On Us.</h2>
+        <p class="intro fade">No commitment, no hard sell. Just come in, meet the team, and see what training here actually feels like.</p>
+        <div class="fade" style="margin-top:2rem">
+          <div class="c-phone">📞 <a href="tel:5099104185">(509) 910-4185</a></div>
+          <div class="c-phone-sub">Or email: <a href="mailto:ogvfitness@gmail.com">ogvfitness@gmail.com</a></div>
+          <div style="font-size:.9rem;color:var(--text-mid);margin-bottom:.25rem">2601 River Rd, Yakima, WA</div>
+        </div>
+        <div class="hours fade">
+          <h4>Hours</h4>
+          <div class="hours-row"><span>Monday – Friday</span><em>5:30 AM – 7:30 PM</em></div>
+          <div class="hours-row"><span>Saturday</span><em>7:00 AM – 1:00 PM</em></div>
+          <div class="hours-row"><span>Sunday</span><em>Closed</em></div>
+        </div>
+      </div>
+      <div class="contact-form fade">
+        <h3>Book Your Free Intro Session</h3>
+        <form onsubmit="return false">
+          <div class="form-row">
+            <div class="fg"><label>First Name</label><input type="text" placeholder="Alex"></div>
+            <div class="fg"><label>Last Name</label><input type="text" placeholder="Rivera"></div>
+          </div>
+          <div class="form-row">
+            <div class="fg"><label>Email</label><input type="email" placeholder="alex@email.com"></div>
+            <div class="fg"><label>Phone</label><input type="tel" placeholder="(509) 555-0100"></div>
+          </div>
+          <div class="fg">
+            <label>I'm interested in...</label>
+            <select>
+              <option value="">Choose a program</option>
+              <option>Personal Training (1-on-1)</option>
+              <option>Small Group Training</option>
+              <option>Bootcamp Classes</option>
+              <option>Accountability Coaching</option>
+              <option>Youth Workout Classes</option>
+              <option>Not sure — help me choose</option>
+            </select>
+          </div>
+          <div class="fg"><label>Tell us about your goals</label><textarea placeholder="What would make this the best decision you made this year?"></textarea></div>
+          <button type="submit" class="form-submit">Send It — I'm Ready to Start →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="footer-logo-icon">⚡</div>
+      <div class="footer-logo-text">Only Good Vibes Fitness<small>Personal Training · Yakima, WA</small></div>
+    </div>
+    <nav class="footer-nav">
+      <a href="#home">Home</a><a href="#services">Services</a>
+      <a href="#about">About</a><a href="#testimonials">Reviews</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-copy">&copy; 2026 Only Good Vibes Fitness. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30),{passive:true});
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.1});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+function countUp(el,target){
+  const sup=el.querySelector('sup')?el.querySelector('sup').outerHTML:'';
+  const fmt=n=>target>=1000?n.toLocaleString():String(n);
+  let s=null;
+  (function t(ts){if(!s)s=ts;const p=Math.min((ts-s)/1500,1),e=1-Math.pow(1-p,3);el.innerHTML=fmt(Math.floor(e*target))+sup;if(p<1)requestAnimationFrame(t);})(performance.now());
+}
+const co=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){countUp(x.target,+x.target.dataset.target);co.unobserve(x.target);}});},{threshold:0.4});
+document.querySelectorAll('[data-target]').forEach(el=>co.observe(el));
+</script>
+</body>
+</html>
